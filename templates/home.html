@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>📚 eBook Store</title>
+  <style>
+    body { font-family: sans-serif; background: #f7f7f7; padding: 2rem; }
+    .top-bar { text-align: right; margin-bottom: 1rem; }
+    .ebook { background: white; padding: 1rem; margin-bottom: 2rem; border-radius: 10px; box-shadow: 0 0 5px #ccc; max-width: 400px; }
+    img { width: 100%; border-radius: 10px; }
+    h2 { margin: 0.5rem 0; }
+    .price { font-weight: bold; color: green; margin-top: 0.5rem; }
+    a.button { background: green; color: white; padding: 0.5rem 1rem; border-radius: 5px; text-decoration: none; display: inline-block; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar for Login/Logout -->
+  <div class="top-bar">
+    {% if session.get('user') %}
+      Welcome, {{ session['user']['name'] }}!
+      <a href="{{ url_for('logout') }}" class="button" style="background: crimson;">Logout</a>
+    {% else %}
+      <a href="{{ url_for('login_google') }}" class="button">Continue with Google</a>
+    {% endif %}
+  </div>
+
+  <h1>📚 Welcome to My eBook Store</h1>
+
+  {% for ebook in ebooks %}
+    <div class="ebook">
+      <img src="{{ url_for('static', filename=ebook.image) }}" alt="{{ ebook.title }}">
+      <h2>{{ ebook.title }}</h2>
+      <p>{{ ebook.description }}</p>
+      <div class="price">{{ ebook.price }}</div>
+      <a href="/buy/{{ ebook.slug }}" class="button">Buy Now</a>
+    </div>
+  {% endfor %}
+
+</body>
+</html>
+

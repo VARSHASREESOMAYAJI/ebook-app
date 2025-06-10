@@ -1,0 +1,18 @@
+[
+  {
+    "slug": "ux-design-ebook-30-laws",
+    "title": "UX Design eBook – 30 Laws",
+    "description": "Master UX Design Principles with 30 Psychological Laws.",
+    "image": "ux-ebook.jpg",
+    "download_link": "https://drive.google.com/your-ux-ebook-link",
+    "price": "₹199"
+  },
+  {
+    "slug": "web-dev-crash-course",
+    "title": "Web Dev Crash Course",
+    "description": "HTML, CSS, JS essentials for beginners.",
+    "image": "frontend.jpg",
+    "download_link": "https://drive.google.com/your-ux-ebook-link",
+    "price": "₹149"
+  }
+]
