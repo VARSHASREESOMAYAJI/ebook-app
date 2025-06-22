@@ -1,41 +1,120 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>📚 eBook Store</title>
+  <meta charset="UTF-8">
+  <title>VR eBooks</title>
+  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
   <style>
-    body { font-family: sans-serif; background: #f7f7f7; padding: 2rem; }
-    .top-bar { text-align: right; margin-bottom: 1rem; }
-    .ebook { background: white; padding: 1rem; margin-bottom: 2rem; border-radius: 10px; box-shadow: 0 0 5px #ccc; max-width: 400px; }
-    img { width: 100%; border-radius: 10px; }
-    h2 { margin: 0.5rem 0; }
-    .price { font-weight: bold; color: green; margin-top: 0.5rem; }
-    a.button { background: green; color: white; padding: 0.5rem 1rem; border-radius: 5px; text-decoration: none; display: inline-block; margin-top: 1rem; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      background-color: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #333;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .eBook-card {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      text-align: center;
+      transition: transform 0.2s ease;
+    }
+
+    .eBook-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .eBook-card img {
+      width: 100%;
+      max-width: 140px;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+
+    .eBook-card h2 {
+      font-size: 1.1rem;
+      color: #222;
+      margin-bottom: 0.5rem;
+    }
+
+    .eBook-card p {
+      font-size: 0.9rem;
+      color: #666;
+      height: 3rem;
+      overflow: hidden;
+    }
+
+    .price {
+      font-weight: bold;
+      color: #28a745;
+      margin: 0.8rem 0;
+      font-size: 1rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #007bff;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #0056b3;
+    }
+
+    @media (max-width: 600px) {
+      .eBook-card p {
+        height: auto;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Top Bar for Login/Logout -->
-  <div class="top-bar">
-    {% if session.get('user') %}
-      Welcome, {{ session['user']['name'] }}!
-      <a href="{{ url_for('logout') }}" class="button" style="background: crimson;">Logout</a>
-    {% else %}
-      <a href="{{ url_for('login_google') }}" class="button">Continue with Google</a>
-    {% endif %}
+  <header>
+    <h1>📚 Explore Our eBooks</h1>
+  </header>
+
+  <div class="container">
+    {% for ebook in ebooks %}
+      <div class="eBook-card">
+        <img src="{{ url_for('static', filename=ebook.image) }}" alt="{{ ebook.title }}">
+        <h2>{{ ebook.title }}</h2>
+        <p>{{ ebook.description }}</p>
+        <div class="price">{{ ebook.price }}</div>
+        <a class="btn" href="{{ url_for('buy', slug=ebook.slug) }}">Buy Now</a>
+      </div>
+    {% endfor %}
   </div>
-
-  <h1>📚 Welcome to My eBook Store</h1>
-
-  {% for ebook in ebooks %}
-    <div class="ebook">
-      <img src="{{ url_for('static', filename=ebook.image) }}" alt="{{ ebook.title }}">
-      <h2>{{ ebook.title }}</h2>
-      <p>{{ ebook.description }}</p>
-      <div class="price">{{ ebook.price }}</div>
-      <a href="/buy/{{ ebook.slug }}" class="button">Buy Now</a>
-    </div>
-  {% endfor %}
 
 </body>
 </html>
-

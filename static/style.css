@@ -1,0 +1,79 @@
+/* styles.css - Compact version */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f5f7fa;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+header, footer {
+  text-align: center;
+  padding: 1rem 0;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  margin-bottom: 1rem;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.eBook-card {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.eBook-card img {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  border-radius: 6px;
+}
+
+.eBook-card h2 {
+  font-size: 1.1rem;
+  margin: 0.6rem 0 0.3rem;
+}
+
+.eBook-card p {
+  font-size: 0.9rem;
+  margin: 0.2rem 0;
+}
+
+.price {
+  font-weight: bold;
+  color: green;
+  font-size: 0.95rem;
+  margin: 0.5rem 0;
+}
+
+.btn {
+  background: #007bff;
+  color: white;
+  padding: 0.5rem 0.9rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.btn:hover {
+  background: #0056b3;
+}
