@@ -3,5 +3,4 @@ flask-dance==7.0.0
 python-dotenv==1.0.1
 pymongo==4.7.2
 certifi==2024.2.2
-smtplib3==1.0.0
 email-validator==2.1.1
